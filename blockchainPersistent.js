@@ -161,7 +161,7 @@ class Blockchain{
             if (blockHash===validBlockHash) {
                 console.log("Valid Hash for block # " + blockPosition);
             } else {
-                console.log('Block #'+blockPosition+' invalid hash:\n'+blockHash+'<>'+validBlockHash);
+                console.log('Block #'+i+' invalid hash:\n'+blockHash+'<>'+validBlockHash);
                 errorLog.push(blockPosition);
             }
             // Verify next hash in chain, ignore last block as last block dont have a next block
