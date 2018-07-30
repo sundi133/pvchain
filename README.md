@@ -38,11 +38,15 @@ node
 ```
 let blockchain = new Blockchain();
 ```
-5: Generate 10 blocks using a for loop
+5: Generate 10 blocks using a for loop (Copy and Paste levelSandbox.js to generate the blocks)
 ```
-for (var i = 0; i <= 10; i++) {
-  blockchain.addBlock(new Block("test data "+i));
-}
+(function theLoop (i) {
+  setTimeout(function () {
+    addDataToLevelDB('Testing data');
+    if (--i) theLoop(i);
+  }, 100);
+})(100);
+
 ```
 6: Validate blockchain
 ```
