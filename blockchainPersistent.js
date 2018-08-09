@@ -37,8 +37,6 @@ class Blockchain{
         else
           self.addBlock(new Block("First block in the chain - Genesis block"));
         })
-      } else {
-        self.addBlock(new Block("First block in the chain - Genesis block"));
       }
     })  
   }
