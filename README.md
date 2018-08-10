@@ -8,7 +8,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Installing Node and NPM is pretty straightforward using the installer package available from the (Node.js® web site)[https://nodejs.org/en/].
+- Installing Node and NPM is pretty straightforward using the installer package available from the (Node.js® web site)[https://nodejs.org/en/].
+
+- Node framework used is Express
 
 ### Configuring your project
 
@@ -37,18 +39,18 @@ npm i multer
 ```
 nodemon index.js
 index.js is the entry point
-PORT is 3001
+PORT is 8000
 ```
 
 - API Endpoints
 ```
 GET /block/block_id
-Example: curl -X GET http://localhost:3001/block/0
+Example: curl -X GET http://localhost:8000/block/0
 ```
 
 ```
 POST /block -d  -H 'Content-Type: application/json' -d $'{"body":"block contents "}'
-Example: curl -X "POST" "http://localhost:3001/block" -H 'Content-Type: application/json' -d $'{"body":"block body contents 0"}'
+Example: curl -X "POST" "http://localhost:8000/block" -H 'Content-Type: application/json' -d $'{"body":"block body contents 0"}'
 ```
 
 
@@ -57,30 +59,30 @@ Example: curl -X "POST" "http://localhost:3001/block" -H 'Content-Type: applicat
 To test code:
 - Open terminal in another window
 ```
-curl -X GET http://localhost:3001/block/4
+curl -X GET http://localhost:8000/block/4
 Should get a response "Invalid block" since genesis block not created yet
 ```
 
 - Create Genesis block
 ```
-curl -X "POST" "http://localhost:3001/block" -H 'Content-Type: application/json' -d $'{"body":"Genesis block"}'
+curl -X "POST" "http://localhost:8000/block" -H 'Content-Type: application/json' -d $'{"body":"Genesis block"}'
 ```
 
 - Add more blocks
 ```
-curl -X "POST" "http://localhost:3001/block" -H 'Content-Type: application/json' -d $'{"body":"block body contents 1"}'
-curl -X "POST" "http://localhost:3001/block" -H 'Content-Type: application/json' -d $'{"body":"block body contents 2"}'
+curl -X "POST" "http://localhost:8000/block" -H 'Content-Type: application/json' -d $'{"body":"block body contents 1"}'
+curl -X "POST" "http://localhost:8000/block" -H 'Content-Type: application/json' -d $'{"body":"block body contents 2"}'
 ```
 - Get Block Information based on block Id
 ```
-curl -X GET http://localhost:3001/block/0
+curl -X GET http://localhost:8000/block/0
 {"hash":"2107bd3e7b9c48c7e45ebde6b24368e69bb99f8c9c962f7583e3503d2eeddedb","height":1,"body":"block body contents 0","time":"1533908826","previousBlockHash":""}
 ```
 ```
-curl -X GET http://localhost:3001/block/1
+curl -X GET http://localhost:8000/block/1
 {"hash":"25d9ff74df4954c546a3b18560624585197e775571f78e4bf16da298916a3eeb","height":2,"body":"block body contents 1","time":"1533908838","previousBlockHash":"2107bd3e7b9c48c7e45ebde6b24368e69bb99f8c9c962f7583e3503d2eeddedb"}
 ```
 ```
-curl -X GET http://localhost:3001/block/4
+curl -X GET http://localhost:8000/block/4
 Invalid block_id
 ```
