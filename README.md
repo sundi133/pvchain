@@ -36,7 +36,21 @@ npm i multer
 - To Run
 ```
 nodemon index.js
+index.js is the entry point
+PORT is 3001
 ```
+
+- API Endpoints
+```
+GET /block/block_id
+Example: curl -X GET http://localhost:3001/block/0
+```
+
+```
+POST /block -d  -H 'Content-Type: application/json' -d $'{"body":"block contents "}'
+Example: curl -X "POST" "http://localhost:3001/block" -H 'Content-Type: application/json' -d $'{"body":"block body contents 0"}'
+```
+
 
 ## Testing
 
