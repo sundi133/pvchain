@@ -33,20 +33,23 @@ npm i multer
 ## Testing
 
 To test code:
-- 1. Open terminal in another window
+- Open terminal in another window
 ```
 curl -X GET http://localhost:3001/block/4
-Invalid block if genesis block not created yet
+Should get a response "Invalid block" since genesis block not created yet
 ```
-- 2. Create Genesis block
-```curl -X "POST" "http://localhost:3001/block" -H 'Content-Type: application/json' -d $'{"body":"Genesis block"}'
+
+- Create Genesis block
 ```
-- 3. Add more blocks
+curl -X "POST" "http://localhost:3001/block" -H 'Content-Type: application/json' -d $'{"body":"Genesis block"}'
+```
+
+- Add more blocks
 ```
 curl -X "POST" "http://localhost:3001/block" -H 'Content-Type: application/json' -d $'{"body":"block body contents 1"}'
 curl -X "POST" "http://localhost:3001/block" -H 'Content-Type: application/json' -d $'{"body":"block body contents 2"}'
 ```
-- 4.
+- Get Block Information based on block Id
 ```
 curl -X GET http://localhost:3001/block/0
 {"hash":"2107bd3e7b9c48c7e45ebde6b24368e69bb99f8c9c962f7583e3503d2eeddedb","height":1,"body":"block body contents 0","time":"1533908826","previousBlockHash":""}
