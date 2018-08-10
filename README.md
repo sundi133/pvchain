@@ -30,6 +30,14 @@ npm install --save express
 npm install -g nodemon
 npm i multer
 ```
+
+### Running the service
+
+- To Run
+```
+nodemon index.js
+```
+
 ## Testing
 
 To test code:
