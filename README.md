@@ -24,42 +24,38 @@ npm install crypto-js --save
 ```
 npm install level --save
 ```
-
+- Install express
+```
+npm install --save express
+npm install -g nodemon
+npm i multer
+```
 ## Testing
 
 To test code:
-1: Open a command prompt or shell terminal after install node.js.
-2: Enter a node session, also known as REPL (Read-Evaluate-Print-Loop).
+- 1. Open terminal in another window
 ```
-node
+curl -X GET http://localhost:3001/block/4
+Invalid block if genesis block not created yet
 ```
-3: Copy and paste code of blockchainPersistant.js into your node session.
-4: Instantiate blockchain with blockchain variable
+- 2. Create Genesis block
+```curl -X "POST" "http://localhost:3001/block" -H 'Content-Type: application/json' -d $'{"body":"Genesis block"}'
 ```
-let blockchain = new Blockchain();
+- 3. Add more blocks
 ```
-5: Generate 10 blocks using a for loop (Copy and Paste levelSandbox.js to generate the blocks)
+curl -X "POST" "http://localhost:3001/block" -H 'Content-Type: application/json' -d $'{"body":"block body contents 1"}'
+curl -X "POST" "http://localhost:3001/block" -H 'Content-Type: application/json' -d $'{"body":"block body contents 2"}'
 ```
-(function theLoop (i) {
-  setTimeout(function () {
-    addDataToLevelDB('Testing data');
-    if (--i) theLoop(i);
-  }, 100);
-})(100);
-
+- 4.
 ```
-6: Validate blockchain
+curl -X GET http://localhost:3001/block/0
+{"hash":"2107bd3e7b9c48c7e45ebde6b24368e69bb99f8c9c962f7583e3503d2eeddedb","height":1,"body":"block body contents 0","time":"1533908826","previousBlockHash":""}
 ```
-blockchain.validateChain();
 ```
-7: Induce errors by changing block data
+curl -X GET http://localhost:3001/block/1
+{"hash":"25d9ff74df4954c546a3b18560624585197e775571f78e4bf16da298916a3eeb","height":2,"body":"block body contents 1","time":"1533908838","previousBlockHash":"2107bd3e7b9c48c7e45ebde6b24368e69bb99f8c9c962f7583e3503d2eeddedb"}
 ```
-let inducedErrorBlocks = [2,4,7];
-for (var i = 0; i < inducedErrorBlocks.length; i++) {
-  blockchain.chain[inducedErrorBlocks[i]].data='induced chain error';
-}
 ```
-8: Validate blockchain. The chain should now fail with blocks 2,4, and 7.
-```
-blockchain.validateChain();
+curl -X GET http://localhost:3001/block/4
+Invalid block_id
 ```
